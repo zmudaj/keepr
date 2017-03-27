@@ -53,6 +53,7 @@ Requirements:
 ### BONUS - Sharing the fun `Total Points: 5`
 Requirements: 
 - Keeps should be tagged. Make the site better by implementing a search filter.
+- Write a few tests for your components.
 - When a user click the share icon they should be able to post that share to the various social medias (Facebook, Twitter, ect) 
 
 ### Finished?
