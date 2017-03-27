@@ -9,8 +9,8 @@ let api = axios.create({
 // REGISTER ALL DATA HERE
 let state = {
   user: {},
-  myVaults: {},
-  myKeeps: {},
+  myVaults: [{}],
+  myKeeps: [{}],
   //Dummy Data
   keeps: [{
     title: 'Learn to Draw',
