@@ -4,9 +4,13 @@
             <div class="modal-content">
                 <h4 class="center">Sign Up</h4>
                 <div class="row">
-                    <div class="input-field col s12">
-                        <input type="text" id="username" v-model="username" required>
-                        <label for="username">Username</label>
+                    <div class="input-field col s6">
+                        <input type="text" id="name" v-model="name" required>
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="text" id="email" v-model="email" required>
+                        <label for="email">Email</label>
                     </div>
                     <div class="input-field col s6">
                         <input type="password" id="password" v-model="password" required>
@@ -40,9 +44,10 @@
         name: 'Sign-Up',
         data() {
             return {
-                username: '',
+                name: '',
                 password: '',
-                confirmPass: ''
+                confirmPass: '',
+                email: ''
             }
         },
         mounted() {
@@ -58,14 +63,11 @@
         },
         methods: {
             registerUser: function () {
-                var checkbox = document.getElementById('filled-in-box').checked;
-                if (!checkbox) {
-                    Materialize.toast('You need to acknowledge our terms and conditions!', 1000);
-                } else {
                     if (this.password == this.confirmPass) {
-                        this.$root.$data.store.actions.register(this.username, this.password);
+                        this.$root.$data.store.actions.register(this.name, this.email, this.password);
                         this.email = '';
                         this.password = '';
+                        this.name = '';
                         this.confirmPass = '';
                         $('#signupModal').modal('close');
                         this.$router.push({ path: '/' });
@@ -77,7 +79,7 @@
                 }
             }
         }
-    }
+    
 
 </script>
 

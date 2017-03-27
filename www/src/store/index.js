@@ -73,6 +73,47 @@ export default {
   state,
   // ACTIONS ARE RESPONSIBLE FOR MANAGING ALL ASYNC REQUESTS
   actions: {
+    login(email, userPass) {
+      api.post('http://localhost:3000/login', {
+          email: email,
+          password: userPass
+        })
+        .then(res => {
+          if (res.data.data) {
+              state.user = res.data.data;
+            console.log(state.user)
+          } else {
+            state.error = res.data.error;
+            Materialize.toast(res.data.error, 1000);
+          }
+        })
+        .catch(handleError)
+    },
+    register(name, email, password) {
+      api.post('http://localhost:3000/register', {
+          name: name,
+          password: password,
+          email: email
+        })
+        .then(res => {
+          if (res.data.data) {
+            state.user = res.data.data;
+          } else {
+            Materialize.toast('Something went wrong!', 2000, "errorToast");
+          }
+        })
+        .catch(handleError)
+    },
+    checkLoggedIn() {
+      api('http://localhost:3000/authenticate')
+        .then(res => {
+          if (res.data.data) {
+            state.user = res.data.data;
+          } 
+        }) 
+        .catch(handleError)
+    }
+
   }
 
 }

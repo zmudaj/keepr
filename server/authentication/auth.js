@@ -57,6 +57,9 @@ router.delete('/logout', (req, res) => {
 
 
 router.get('/authenticate', (req,res) => {
+  if(!req.session.uid){
+    return res.send({error: "Please log in"})
+  }
   Users.findById(req.session.uid).then(user => {
     return res.send ({
       data: user
