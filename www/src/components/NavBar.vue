@@ -2,7 +2,7 @@
     <div>
         <ul id="dropdown1" class="dropdown-content">
             <li><router-link to="/myprofile">My Profile</router-link></li>
-            <li><router-link to="/">My Connections</router-link></li>
+            <li><router-link to="/public-keeps">Public Keeps</router-link></li>
             <li><router-link to="/search">Search</router-link></li>
             <li><router-link to="/creategroup">Create Group</router-link></li>
             <li class="divider"></li>
@@ -14,7 +14,7 @@
                     <a href="#" class="brand-logo"><img src="../assets/logo.jpg" class="nav-logo"></a>
                     <!--<a href="#" class="brand-logo hide-on-med-and-up left">MP</a>-->
                     <!-- The "Hello username" feature was causing issues on smaller screens-->
-                        <router-link v-if="this.$root.$data.store.state.user._id" to="/myprofile" class="brand-logo center">Hello, {{ this.$root.$data.store.state.user.username }}</router-link>
+                        <router-link v-if="this.$root.$data.store.state.user._id" to="/myprofile" class="brand-logo">Hello, {{ this.$root.$data.store.state.user.name }}</router-link>
                     <ul v-if="!this.$root.$data.store.state.user._id" class="right hide-on-med-and-down">
                         <li>
                             <router-link to="login">Login</router-link>
