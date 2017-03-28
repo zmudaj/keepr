@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import PublicKeeps from '@/components/PublicKeeps'
+import MyVault from '@/components/MyVault'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/public-keeps',
       name: 'PublicKeeps',
       component: PublicKeeps
+    },
+    {
+      path: '/myvault',
+      name: 'MyVault',
+      component: MyVault
     }
   ]
 })

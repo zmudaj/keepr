@@ -4,23 +4,26 @@
             <li><router-link to="/myprofile">My Profile</router-link></li>
             <li><router-link to="/public-keeps">Public Keeps</router-link></li>
             <li><router-link to="/search">Search</router-link></li>
-            <li><router-link to="/creategroup">Create Group</router-link></li>
+            <li><router-link to="/myvault">My Vaults</router-link></li>
             <li class="divider"></li>
             <li><a @click="logout">Logout</a></li>
         </ul>
         <div class="navbar-fixed">
             <nav class="black">
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo"><img src="../assets/logo.jpg" class="nav-logo"></a>
+                    <a href="#" class="brand-logo left"><img src="../assets/logo.jpg" class="nav-logo"></a>
                     <!--<a href="#" class="brand-logo hide-on-med-and-up left">MP</a>-->
                     <!-- The "Hello username" feature was causing issues on smaller screens-->
-                        <router-link v-if="this.$root.$data.store.state.user._id" to="/myprofile" class="brand-logo">Hello, {{ this.$root.$data.store.state.user.name }}</router-link>
-                    <ul v-if="!this.$root.$data.store.state.user._id" class="right hide-on-med-and-down">
+                        <!--<router-link v-if="this.$root.$data.store.state.user._id" to="/myprofile" class="brand-logo">Hello, {{ this.$root.$data.store.state.user.name }}</router-link>-->
+                    <ul v-if="!this.$root.$data.store.state.user._id" class="right">
                         <li>
                             <router-link to="login">Login</router-link>
                         </li>
                         <li>
                             <router-link to="register">Sign Up</router-link>
+                        </li>
+                        <li>
+                            <router-link to="public-keeps">Browse Keeps</router-link>
                         </li>
                     </ul>
                     <ul v-show="this.$root.$data.store.state.user._id" id="nav-mobile" class="right menu-padding">
