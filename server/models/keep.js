@@ -3,12 +3,16 @@ let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
 let bcrypt = require('bcryptjs')
 const SALT_FACTOR = 10
+import { models } from '../config/constants'
 
 let schema = new Schema({
-  name: { type: String, required: true },
-  description: { type: String, required: true },
-  image: { type: String },
+  title: { type: String, required: true },
+  imageUrl: { type: String },
+  articleLink: { type: String },
+  tags: { type: String },
+  public: { type: Boolean, default: true },
+  views: { type: Number, default: 0 },
+  timesVaulted: { type: Number, default: 0 },
   // Relations
-  user: { type: ObjectId, ref: models.user.name },
-  keeps: [{ type: ObjectId, ref: models.keep.name }]
+  userId: { type: ObjectId, ref: models.user.name, required: true },
 })

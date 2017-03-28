@@ -1,4 +1,3 @@
-// Copied from user-routes
 export default {
   
 }
@@ -14,4 +13,3 @@ function handleResponse(action, data, error) {
     }
     return response
   }
-  //
