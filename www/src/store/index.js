@@ -9,7 +9,14 @@ let api = axios.create({
 // REGISTER ALL DATA HERE
 let state = {
   user: {},
-  myVaults: [{}],
+  myVaults: [{
+    name: 'Dummy Vault One',
+    description: 'This is a hard coded Vault to test my vaults',
+    imageUrl: 'http://davidfeldmanshow.com/wp-content/uploads/2016/08/vault_zps15bf4bc3-1.jpg',
+    // Relations
+    userId: '58d97b8f712af204a82929ac',
+    keeps: []
+  }],
   myKeeps: [{}],
   //Dummy Data
   keeps: [{
@@ -75,12 +82,12 @@ export default {
   actions: {
     login(email, userPass) {
       api.post('http://localhost:3000/login', {
-          email: email,
-          password: userPass
-        })
+        email: email,
+        password: userPass
+      })
         .then(res => {
           if (res.data.data) {
-              state.user = res.data.data;
+            state.user = res.data.data;
             console.log(state.user)
           } else {
             state.error = res.data.error;
@@ -91,10 +98,10 @@ export default {
     },
     register(name, email, password) {
       api.post('http://localhost:3000/register', {
-          name: name,
-          password: password,
-          email: email
-        })
+        name: name,
+        password: password,
+        email: email
+      })
         .then(res => {
           if (res.data.data) {
             state.user = res.data.data;
@@ -109,9 +116,16 @@ export default {
         .then(res => {
           if (res.data.data) {
             state.user = res.data.data;
-          } 
-        }) 
+          }
+        })
         .catch(handleError)
+    },
+    createVault(name, description) {
+      api.post('group/create', {
+        name: name,
+        description: description
+      })
+
     }
 
   }
