@@ -5,8 +5,8 @@
                 <h4 class="center">Login</h4>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input type="text" id="username" v-model="username">
-                        <label for="username">Username</label>
+                        <input type="text" id="email" v-model="email">
+                        <label for="email">Email</label>
                     </div>
                     <div class="input-field col s6">
                         <input type="password" id="password" v-model="password">
@@ -16,10 +16,10 @@
             </div>
             <div class="modal-footer">
                 <div class="left">
-                    <router-link to="/register" class="waves-effect waves-teal btn-flat">Sign Up</router-link>
+                    <router-link to="/sign-up" class="waves-effect waves-teal btn-flat">Sign Up</router-link>
                 </div>
                 <div class="right">
-                    <button type="submit" class="waves-effect waves-indigo btn indigo right-align">Login</button>
+                    <button type="submit" class="waves-effect waves-indigo btn blue darken-4 right-align">Login</button>
                 </div>
             </div>
         </form>
@@ -32,7 +32,7 @@
         name: 'Login',
         data() {
             return {
-                username: '',
+                email: '',
                 password: ''
             }
         },
@@ -49,15 +49,14 @@
         },
         methods: {
             loginUser() {
-                this.$root.$data.store.actions.login(this.username, this.password);
-                this.username = '';
+                this.$root.$data.store.actions.login(this.email, this.password);
+                this.email = '';
                 this.password = '';
                 $('#loginModal').modal('close');
                 this.$router.push({ path: '/' })
             }
         }
     }
-
 </script>
 
 <style>

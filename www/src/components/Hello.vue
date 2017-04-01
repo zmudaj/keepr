@@ -1,42 +1,29 @@
 <template>
   <div class="hello">
-    <img src="../assets/logo.jpg" class="logo">
-    <h1>Welcome to Keepr</h1>
-    <p>Get Started</p>
-    <ul>
-      <li>
-        <router-link to="login">Login</router-link>
-      </li>
-      <li>
-        <router-link to="register">Sign Up</router-link>
-      </li>
-    </ul>
-    <hr>
+    <landing-page v-if="!this.$root.$data.store.state.user._id"></landing-page>
+    <router-view></router-view>
+    <dashboard v-if="this.$root.$data.store.state.user._id"></dashboard>
   </div>
 </template>
 
 <script>
+  import LandingPage from './LandingPage'
+  import Dashboard from './Dashboard'
   export default {
     name: 'hello',
+    components: {
+      LandingPage,
+      Dashboard
+    },
     data() {
       return {
-
       }
     }
   }
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .hello {
-    text-align: center;
-  }
-  
-  .logo {
-    margin-top: 3%;
-  }
-  
   h1,
   h2 {
     font-weight: normal;

@@ -20,10 +20,6 @@
                         <input type="password" id="confirmPass" v-model="confirmPass" required>
                         <label for="confirmPass">Confirm Password</label>
                     </div>
-                    <!--<div class="input-field col s12">
-                        <input type="checkbox" class="filled-in" id="filled-in-box">
-                        <label for="filled-in-box"><sup>I understand that my Steam profile must be set to public for me to link my profile.</sup></label>
-                    </div>-->
                 </div>
             </div>
             <div class="modal-footer">
@@ -31,7 +27,7 @@
                     <router-link to="/login" class="waves-effect waves-teal btn-flat">Login</router-link>
                 </div>
                 <div class="right">
-                    <button type="submit" class="waves-effect waves-indigo btn indigo right-align">Sign Up</button>
+                    <button type="submit" class="waves-effect waves-indigo btn blue darken-4 right-align">Sign Up</button>
                 </div>
             </div>
         </form>
@@ -41,13 +37,13 @@
 
 <script>
     export default {
-        name: 'Sign-Up',
+        name: 'SignUp',
         data() {
             return {
                 name: '',
+                email: '',
                 password: '',
-                confirmPass: '',
-                email: ''
+                confirmPass: ''
             }
         },
         mounted() {
@@ -63,26 +59,23 @@
         },
         methods: {
             registerUser: function () {
-                    if (this.password == this.confirmPass) {
-                        this.$root.$data.store.actions.register(this.name, this.email, this.password);
-                        this.email = '';
-                        this.password = '';
-                        this.name = '';
-                        this.confirmPass = '';
-                        $('#signupModal').modal('close');
-                        this.$router.push({ path: '/' });
-                    } else {
-                        this.password = '';
-                        this.confirmPass = '';
-                        Materialize.toast('Your password don\'t match.', 1000);
-                    }
+                if (this.password == this.confirmPass) {
+                    this.$root.$data.store.actions.register(this.name, this.email, this.password);
+                    this.email = '';
+                    this.name = '';
+                    this.password = '';
+                    this.confirmPass = '';
+                    $('#signupModal').modal('close');
+                    this.$router.push({ path: '/' });
+                } else {
+                    this.password = '';
+                    this.confirmPass = '';
+                    Materialize.toast('Login failed', 1000);
                 }
             }
         }
-    
-
+    }
 </script>
 
 <style>
-
 </style>
