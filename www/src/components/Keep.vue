@@ -1,46 +1,44 @@
 <template>
-    <div>
-        <div class="container">
-            <div class="row">
-                <ul>
-
-                    <li v-for="keep in this.$root.$data.store.state.keeps">
-
-                        <div class="col s6 m4 l3">
-                            <div class="card">
-                                <div class="card-image">
-                                    <img :src="keep.imgUrl">
-                                    <span class="card-title"></span>
-                                </div>
-                                <a :href="keep.articleLink">
-                                    <div class="card-content">
-                                        <p>{{ keep.title }}</p>
-                                    </div>
-                                    <div class="card-action">
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+  <div class="card hoverable" v-on:mouseenter="showAction" v-on:mouseleave="showAction">
+    <div class="card-image" v-if="keep.imageUrl">
+      <img :src="keep.imageUrl">
     </div>
+    <div class="card-content">
+      <span v-if="!keep.articleLink" class="card-title">{{ keep.title }}</span>
+      <span v-if="keep.articleLink" class="card-title"><a :href="keep.articleLink">{{ keep.title }}</a></span>
+    </div>
+    <div class="card-action height">
+      <span class="left" v-show="hoverShow"><i class="fa fa-eye"></i> {{ keep.views }} | <i class="fa fa-retweet"></i> {{ keep.timesVaulted }}</span>
+      <span class="right" v-show="hoverShow"><a @click="viewDetails(keep._id)">details</a></span>
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'public-keeps'
+  export default {
+    name: 'keeps',
+    props: ['keep'],
+    data() {
+      return {
+        hoverShow: false
+      }
+    },
+    methods: {
+      showAction() {
+        this.hoverShow = !this.hoverShow;
+      },
+      viewDetails(keepId){
+        if(this.$root.$data.store.state.user._id){
+          this.$router.push({ path: '/keeps/' + keepId })
+        } else {
+          this.$router.push({ path: '/register' })
+          Materialize.toast('You must have an account to view and save keeps!', 1000);
+        }
+      }
     }
-
+  }
 </script>
 
 <style>
-    .keep-image {
-        max-width: 100%;
-        max-height: 100%;
-    }
-    /*.keep-column {
-        max-height: 100px;
-    }*/
+  
 </style>
